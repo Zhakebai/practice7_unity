@@ -1,42 +1,62 @@
-# practice7_unity
-# Dragon Picker - Unity WebGL Game
+# Practice 8-9 pygame
+# Maze Shooter Game
 
-## 🎮 Project Overview
-Dragon Picker is a Unity-based game built for WebGL and hosted on **simmer.io**. This project is part of a learning exercise to structure Unity projects properly and deploy them on a web-based platform.
+## Overview
 
-## 📂 Project Structure
-The project follows a structured file organization for better maintainability:
+Maze Shooter Game is a 2D tile-based game built with Pygame. The game features a procedurally generated maze where you, as the hero, navigate corridors, avoid hazardous lava, and battle horizontally moving enemies. With each level, the challenge increases as more lava is added and enemy tactics keep you on your toes.
 
-- **Scripts:** Game logic and mechanics.
-- **Textures & Materials:** Visual assets used in the game.
-- **Audio:** Background music and sound effects.
-- **Animations & Controllers:** Character animations.
-- **Prefabs & Scenes:** Game objects and level design.
+## Features
 
-## 🚀 Deployment on Simmer.io
-### Steps to Upload:
-1. Build the project for **WebGL**:
-   - Go to **File → Build Settings**.
-   - Select **WebGL** as the platform.
-   - Disable **Compression Format** in **Player Settings**.
-   - Click **Build And Run**.
+- **Procedural Maze Generation:**  
+  Uses a recursive backtracking algorithm to generate maze layouts with walls and open corridors.
 
-2. Upload the build folder to [simmer.io](https://simmer.io/upload):
-   - Register/Login.
-   - Drag and drop the `DragonPickerBuild` folder.
-   - Set a name and URL.
-   - Save and publish.
+- **Dynamic Lava Placement:**  
+  Lava is placed only on "central" corridor tiles.  
+  - Level 1: 5 lava tiles  
+  - Each subsequent level: +2 lava tiles  
+  Lava is drawn using a transparent image that covers the entire tile.
 
-## 🔧 Troubleshooting
-### ❌ Error: "Cannot read properties of undefined (reading 'buildUrlIsIncludeBuildDirectory')"
-- Ensure the **WebGL module** is installed in **Unity Hub**.
-- Make sure the **Compression Format** is set to **Disable**.
-- Restart Unity after switching the platform to **WebGL**.
+- **Player Mechanics:**  
+  - **Movement:** Use **W**, **A**, **S**, **D** to move.  
+  - **Jumping:** Press **J** to jump to the next safe tile (skipping over lava).  
+  - **Shooting:** By default, the hero shoots to the right. Changing direction causes the hero to shoot in that new direction. Use **SPACE** to shoot.
 
-### ❌ Error Loading Script (`error loading script`)
-- Check **Build Settings** and **Player Settings**.
-- Make sure all **scenes** are included in the build.
-- Ensure that **simmer.io** supports the Unity version used.
+- **Enemy Behavior:**  
+  - **Movement:** Enemies move only horizontally. They chase the hero when close and wander randomly when far. They check the tile ahead; if blocked, they reverse direction.
+  - **Shooting:** Enemies shoot horizontally when the hero is in the same row and on the side they are facing, provided there’s a clear line-of-sight.
 
-## 📜 License
-This project is for educational purposes only.
+- **Camera Scrolling:**  
+  Smooth camera scrolling follows the hero throughout the maze.
+
+- **Restart Option:**  
+  After a win or game over, a restart screen is displayed. Press **R** to restart the game.
+
+- **Sound & Music:**  
+  The game includes sound effects for actions (click, shoot, jump) and background music.
+
+## Installation
+
+**Prerequisites:**  
+   - Python 3.x  
+   - Pygame (install with `pip install pygame`)
+   - 
+## Assets
+
+Make sure the following files are in your project directory:
+- **hero.png** – Sprite for the player.
+- **enemy.png** – Sprite for the enemies.
+- **lava.png** – Image used for lava tiles (with transparency).
+- **click.wav** – Sound effect for mouse clicks.
+- **shoot.wav** – Sound effect for shooting.
+- **jump.wav** – Sound effect for jumping.
+- **background.mp3** – Background music.
+
+Controls
+W, A, S, D: Move the hero.
+SPACE: Shoot in the hero’s current facing direction (default is right).
+J: Jump to the next safe tile in the direction the hero is facing (skips over lava).
+R: Restart the game after a win or game over.
+
+**How It Works
+Maze Generation
+A recursive backtracking algorithm creates a maze where walls are represented by # and passages by .. The maze provides the grid structure for the game
